@@ -1,6 +1,6 @@
 {
   "name": "react-native-google-mobile-ads",
-  "version": "15.8.0",
+  "version": "15.8.3",
   "author": "Invertase <oss@invertase.io> (http://invertase.io)",
   "description": "React Native Google Mobile Ads is an easy way to monetize mobile apps with targeted, in-app advertising.",
   "main": "lib/commonjs/index.js",
@@ -65,6 +65,7 @@
     ]
   },
   "scripts": {
+    "postinstallDev": "yarn prepare",
     "prepare": "yarn build && yarn build:plugin",
     "build": "genversion --es6 --semi src/version.ts && bob build",
     "build:clean": "rimraf android/build && rimraf ios/build && rimraf lib && rimraf plugin/build",
@@ -83,7 +84,7 @@
     "tests:jest": "jest",
     "tests:jest-watch": "jest --watch",
     "tests:jest-coverage": "jest --coverage",
-    "tests:install": "cd RNGoogleMobileAdsExample && yarn",
+    "tests:install": "cd RNGoogleMobileAdsExample && yarn && yarn postinstallDev",
     "tests:packager": "cd RNGoogleMobileAdsExample && yarn react-native start",
     "tests:packager:reset-cache": "cd RNGoogleMobileAdsExample && yarn react-native start --reset-cache",
     "tests:android:build": "cd RNGoogleMobileAdsExample && yarn detox build --configuration android.emu.debug",
@@ -108,7 +109,7 @@
     "tests:ios:test-cover": "cd RNGoogleMobileAdsExample && ./node_modules/.bin/nyc yarn detox test --configuration ios.sim.debug",
     "tests:ios:test-cover-reuse": "cd RNGoogleMobileAdsExample && node_modules/.bin/nyc yarn detox test --configuration ios.sim.debug --reuse --loglevel warn",
     "tests:ios:pod:install": "cd RNGoogleMobileAdsExample && cd ios && rm -rf RNGoogleMobileAdsExample.xcworkspace && rm -f Podfile.lock && pod install --repo-update && cd ..",
-    "package:update": "yarn upgrade --latest"
+    "package:update": "yarn upgrade-interactive"
   },
   "dependencies": {
     "@iabtcf/core": "^1.5.3",
@@ -118,12 +119,12 @@
     "@babel/core": "^7.25.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@react-native/babel-preset": "^0.76.2",
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^8.0.6",
-    "@semantic-release/npm": "^9.0.1",
-    "@semantic-release/release-notes-generator": "^10.0.3",
+    "@semantic-release/github": "^12.0.0",
+    "@semantic-release/npm": "^13.1.1",
+    "@semantic-release/release-notes-generator": "^14.1.0",
     "@testing-library/react-native": "^11.5.0",
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.7",
@@ -132,7 +133,8 @@
     "@typescript-eslint/parser": "^5.41.0",
     "babel-jest": "^29.2.2",
     "clang-format": "1.8.0",
-    "conventional-changelog-cli": "^2.2.2",
+    "conventional-changelog": "^7.1.1",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^27.1.3",
@@ -150,7 +152,7 @@
     "react-native-builder-bob": "^0.20.0",
     "react-test-renderer": "^18.3.1",
     "rimraf": "^3.0.2",
-    "semantic-release": "^19.0.5",
+    "semantic-release": "^25.0.1",
     "spellchecker-cli": "^6.1.1",
     "typescript": "^5.5.3"
   },
@@ -179,5 +181,6 @@
     "android": {
       "javaPackageName": "io.invertase.googlemobileads"
     }
-  }
+  },
+  "packageManager": "yarn@4.10.3"
 }
